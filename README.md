@@ -14,3 +14,5 @@ Search bar - Movie suggestions
 - Validate email with regex - https://saturncloud.io/blog/how-can-i-validate-an-email-address-using-a-regular-expression/
 
 onAuthStateChanged - for handling any auth change for a user (signup/signin/logout), we use onAuthStateChanged given by firebase
+
+fetch movies with TMDB - https://developer.themoviedb.org/reference/intro/getting-started
