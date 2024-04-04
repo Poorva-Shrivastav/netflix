@@ -16,3 +16,7 @@ Search bar - Movie suggestions
 onAuthStateChanged - for handling any auth change for a user (signup/signin/logout), we use onAuthStateChanged given by firebase
 
 fetch movies with TMDB - https://developer.themoviedb.org/reference/intro/getting-started
+
+//DB
+//oops
+//DS

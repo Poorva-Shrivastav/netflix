@@ -9,3 +9,11 @@ export const LOGO =
 
 export const LOGIN_ICON =
   "https://wallpapers.com/images/high/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.webp";
+
+export const TMBD_API_OPTIONS = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMjAyZGZlYjEzYmZhYmUwOTAyZjNiNjUyNGYwOTZjMiIsInN1YiI6IjY2MGFiYzA3MzU4MThmMDE3YzM5OTgxMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ncRfCX_gDV8lE1raDoi7VWdakeqSNx_Z-cWkrB0kGHc`,
+  },
+};
