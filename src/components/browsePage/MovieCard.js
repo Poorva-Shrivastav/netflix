@@ -1,13 +1,10 @@
 import React from "react";
 import { TMDB_IMAGE_CDN } from "../../utils/constants";
-import MovieVideoBackground from "./MovieVideoBackground";
 
 const MovieCard = ({ poster, movieId }) => {
-  const movieCardHandler = (movieId) => {
-    <MovieVideoBackground movieId={movieId} />;
-  };
+  if (!poster) return null;
   return (
-    <div className="w-40 flex pr-4" onClick={() => movieCardHandler(movieId)}>
+    <div className="w-40 flex pr-4">
       <img src={TMDB_IMAGE_CDN + poster} alt="movie-img" />
     </div>
   );

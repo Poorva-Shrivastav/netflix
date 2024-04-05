@@ -7,7 +7,7 @@ const Search = () => {
   return (
     <div className="">
       <Backdrop />
-      <div>
+      <div className="absolute z-10 w-full">
         <SearchBar />
         <SearchResult />
       </div>

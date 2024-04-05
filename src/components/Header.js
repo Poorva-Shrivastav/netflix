@@ -5,7 +5,11 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/redux/slices/userSlice";
-import { toggleSearchView } from "../utils/redux/slices/searchSlice";
+import {
+  addSearchedMovie,
+  addSearchedMovieName,
+  toggleSearchView,
+} from "../utils/redux/slices/searchSlice";
 import { changeLanguage } from "../utils/redux/slices/langSlice";
 import { SUPPORTED_LANGUAGES } from "../utils/language/languageConstants";
 
@@ -13,6 +17,9 @@ const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  const showSearchPage = useSelector(
+    (store) => store.searchMovie.showSearchPage
+  );
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -41,29 +48,35 @@ const Header = () => {
 
   const handleSearch = () => {
     dispatch(toggleSearchView());
+    dispatch(addSearchedMovie(null));
+    dispatch(addSearchedMovieName(null));
   };
 
   const handleChange = (e) => {
     dispatch(changeLanguage(e.target.value));
   };
   return (
-    <div className="w-screen absolute px-8 py-2  bg-gradient-to-b from-black z-30 flex justify-between">
+    <div className="w-screen absolute px-8 py-2  bg-gradient-to-b from-black z-30 flex justify-between ">
       <img className="w-48 mx-28" src={LOGO} alt="logo" />
       {user && (
-        <div className="w-3/12 flex self-center justify-between">
-          <button className=" text-white" onClick={handleSearch}>
-            🔍 Search
+        <div className="p-4 mx-4 flex self-center ">
+          <button className=" text-white mx-2" onClick={handleSearch}>
+            {showSearchPage ? "Home" : "🔍 Search"}
           </button>
-          <select
-            className="w-4/12 bg-black text-white opacity-50"
-            onChange={handleChange}
-          >
-            {SUPPORTED_LANGUAGES.map((lang) => (
-              <option value={lang.identifier}>{lang.name}</option>
-            ))}
-          </select>
-          <img className="w-10 rounded-md" src={LOGIN_ICON} alt="icon" />
-          <button className=" text-white" onClick={handleSignout}>
+          {showSearchPage && (
+            <select
+              className=" bg-black text-white mx-2"
+              onChange={handleChange}
+            >
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option key={lang.identifier} value={lang.identifier}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          )}
+          <img className=" mx-4 w-10 rounded-md" src={LOGIN_ICON} alt="icon" />
+          <button className="mx-2 text-white" onClick={handleSignout}>
             Sign out
           </button>
         </div>
