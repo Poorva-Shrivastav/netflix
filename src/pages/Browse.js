@@ -6,6 +6,8 @@ import MainContainer from "../components/browsePage/BrowseMainContainer";
 import usePopularMovies from "../customHooks/usePopularMovies";
 import useTopRatedMovies from "../customHooks/useTopRatedMovies";
 import useUpcomingMovies from "../customHooks/useUpcomingMovies";
+import { useSelector } from "react-redux";
+import Search from "../components/browsePage/search/Search";
 
 const Browse = () => {
   useNowPlayingMovies();
@@ -13,11 +15,19 @@ const Browse = () => {
   useTopRatedMovies();
   useUpcomingMovies();
 
+  const isSearch = useSelector((state) => state.searchMovie.showSearchPage);
+
   return (
     <div>
       <Header />
-      <MainContainer />
-      <SecondaryContainer />
+      {isSearch ? (
+        <Search />
+      ) : (
+        <>
+          <MainContainer />
+          <SecondaryContainer />
+        </>
+      )}
     </div>
   );
 };
