@@ -1,8 +1,16 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { playMovie } from "../../../utils/redux/slices/moviesSlice";
+import PlayBtn from "../PlayBtn";
 
 function SearchedVideoTitle({ title, overview }) {
   const updatedContent = useSelector((store) => store.movies?.trailerContent);
+  const play = useSelector((store) => store.movies?.playBtn);
+  const dispatch = useDispatch();
+
+  const playHandler = () => {
+    dispatch(playMovie(true));
+  };
 
   useEffect(() => {}, [updatedContent]);
 
@@ -15,13 +23,20 @@ function SearchedVideoTitle({ title, overview }) {
         {updatedContent ? updatedContent[1] : overview}
       </p>
       <div className="flex p-4 m-4">
-        <button className="bg-white text-black text-lg px-8 py-1 rounded-sm hover:bg-opacity-70">
+        <button
+          className="bg-white text-black text-lg px-8 py-1 rounded-sm hover:bg-opacity-70"
+          onClick={playHandler}
+        >
           ▶️ Play
         </button>
-        <button className="bg-gray-700 text-white text-lg px-10 py-1 mx-2 bg-opacity-70 rounded-sm">
+        <button
+          className="bg-gray-700 text-white text-lg px-10 py-1 mx-2 bg-opacity-70 rounded-sm"
+          onClick={playHandler}
+        >
           More Info
         </button>
       </div>
+      {play && <PlayBtn />}
     </div>
   );
 }

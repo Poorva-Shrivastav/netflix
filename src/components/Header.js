@@ -16,6 +16,7 @@ import { SUPPORTED_LANGUAGES } from "../utils/language/languageConstants";
 import {
   addTrailerContent,
   addTrailerVideo,
+  playMovie,
 } from "../utils/redux/slices/moviesSlice";
 
 const Header = () => {
@@ -57,6 +58,7 @@ const Header = () => {
     dispatch(addSearchedMovieName(null));
     dispatch(addTrailerVideo(null));
     dispatch(addTrailerContent([]));
+    dispatch(playMovie(false));
   };
 
   const handleChange = (e) => {
