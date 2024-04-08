@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-const MovieVideoTitle = ({ title, overview }) => {
-  console.log(title);
+function SearchedVideoTitle({ title, overview }) {
   const updatedContent = useSelector((store) => store.movies?.trailerContent);
 
   useEffect(() => {}, [updatedContent]);
@@ -10,10 +9,10 @@ const MovieVideoTitle = ({ title, overview }) => {
   return (
     <div className="w-screen aspect-video px-36 py-48 absolute bg-gradient-to-r from-black">
       <h1 className="text-5xl text-white font-extrabold p-6">
-        {updatedContent.length > 0 ? updatedContent[0] : title}
+        {updatedContent ? updatedContent[0] : title}
       </h1>
       <p className="p-6 text-md text-white w-2/5">
-        {updatedContent.length > 0 ? updatedContent[1] : overview}
+        {updatedContent ? updatedContent[1] : overview}
       </p>
       <div className="flex p-4 m-4">
         <button className="bg-white text-black text-lg px-8 py-1 rounded-sm hover:bg-opacity-70">
@@ -25,6 +24,6 @@ const MovieVideoTitle = ({ title, overview }) => {
       </div>
     </div>
   );
-};
+}
 
-export default MovieVideoTitle;
+export default SearchedVideoTitle;

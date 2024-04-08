@@ -8,10 +8,15 @@ import { addUser, removeUser } from "../utils/redux/slices/userSlice";
 import {
   addSearchedMovie,
   addSearchedMovieName,
+  clickedFromSearchPage,
   toggleSearchView,
 } from "../utils/redux/slices/searchSlice";
 import { changeLanguage } from "../utils/redux/slices/langSlice";
 import { SUPPORTED_LANGUAGES } from "../utils/language/languageConstants";
+import {
+  addTrailerContent,
+  addTrailerVideo,
+} from "../utils/redux/slices/moviesSlice";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -50,6 +55,8 @@ const Header = () => {
     dispatch(toggleSearchView());
     dispatch(addSearchedMovie(null));
     dispatch(addSearchedMovieName(null));
+    dispatch(addTrailerVideo(null));
+    dispatch(addTrailerContent([]));
   };
 
   const handleChange = (e) => {

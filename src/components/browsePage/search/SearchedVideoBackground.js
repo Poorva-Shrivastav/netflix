@@ -1,9 +1,7 @@
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import useNowPlayingTrailer from "../../customHooks/useNowPlayingTrailer";
-import { useEffect } from "react";
 
-const MovieVideoBackground = ({ movieId }) => {
-  useNowPlayingTrailer(movieId);
+const SearchedVideoBackground = () => {
   const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
 
   useEffect(() => {}, [trailerVideo]);
@@ -27,4 +25,4 @@ const MovieVideoBackground = ({ movieId }) => {
   );
 };
 
-export default MovieVideoBackground;
+export default SearchedVideoBackground;

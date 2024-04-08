@@ -6,6 +6,7 @@ const searchSlice = createSlice({
     showSearchPage: false,
     searchedMovie: null,
     searchedMovieName: null,
+    isClickedFromSearchPage: false,
   },
   reducers: {
     toggleSearchView: (state) => {
@@ -17,9 +18,16 @@ const searchSlice = createSlice({
     addSearchedMovieName: (state, action) => {
       state.searchedMovieName = action.payload;
     },
+    clickedFromSearchPage: (state) => {
+      state.isClickedFromSearchPage = !state.isClickedFromSearchPage;
+    },
   },
 });
 
-export const { toggleSearchView, addSearchedMovie, addSearchedMovieName } =
-  searchSlice.actions;
+export const {
+  toggleSearchView,
+  addSearchedMovie,
+  addSearchedMovieName,
+  clickedFromSearchPage,
+} = searchSlice.actions;
 export default searchSlice.reducer;

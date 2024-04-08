@@ -1,9 +1,16 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import MovieVideoBackground from "./MovieVideoBackground";
 import MovieVideoTitle from "./MovieVideoTitle";
+import { clickedFromSearchPage } from "../../utils/redux/slices/searchSlice";
 const MainContainer = () => {
   const movies = useSelector((store) => store.movies?.nowPlayingMovies);
+  const isSearch = useSelector((state) => state.searchMovie.showSearchPage);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(clickedFromSearchPage(false));
+  }, []);
 
   if (!movies) return;
   const mainMovie = movies[0];
@@ -12,8 +19,12 @@ const MainContainer = () => {
 
   return (
     <div>
-      <MovieVideoTitle title={original_title} overview={overview} />
-      <MovieVideoBackground movieId={id} />
+      {!isSearch && (
+        <>
+          <MovieVideoTitle title={original_title} overview={overview} />
+          <MovieVideoBackground movieId={id} />
+        </>
+      )}
     </div>
   );
 };
